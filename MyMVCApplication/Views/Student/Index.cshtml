@@ -7,23 +7,34 @@
 
 <h2>Index</h2>
 
-
-@foreach (var item in Model)
+@if(Model==null)
 {
-    for (int i=0; i<=2; i++)
-    {
-        <div id="teammates" class="widget">
-            <h3>Teammates <span class="collapse k-icon k-i-arrowhead-n"></span></h3>
-            <div>
-                <div class="team-mate">
-                    <img src="@Url.Content("~/content/web/panelbar/andrew.jpg")" alt="Andrew Fuller">
-                    <h4>Ra Ja</h4>
-                    <p>Team Lead</p>
-                </div>
-            </div>
-        </div>
-    }
+    <p>
+        <h3>Please Pass Valid Project ID as Query String</h3>
+    </p>
 }
+else
+{
+    foreach (var item in Model)
+     {
+         for (int i=0; i<=2; i++)
+         {
+             <div id="teammates" class="widget">
+                 <h3>Teammates <span class="collapse k-icon k-i-arrowhead-n"></span></h3>
+                 <div>
+                     <div class="team-mate">
+                         <img src="@Url.Content("~/content/web/panelbar/andrew.jpg")" alt="Alt text">
+                         <h4>Ra Ja</h4>
+                         <p>Team Lead</p>
+                     </div>
+                 </div>
+             </div>
+         }
+     }
+}
+
+
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -42,25 +53,35 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item._Student.StudentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item._Student.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item._Student.StudentId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item._Student.StudentId }) |
-                @Html.ActionLink("Details", "Details", new { id = item._Student.StudentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item._Student.StudentId })
-            </td>
-        </tr>
-    }
+@if (Model == null)
+{
+    <p>
+        @Html.DisplayText("Please Enter Valid Student ID")
+    </p>
+}
+else
+{
+    foreach (var item in Model)
+     {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item._Student.StudentName)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item._Student.Age)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item._Student.StudentId)
+             </td>
+             <td>
+                 @Html.ActionLink("Edit", "Edit", new { id = item._Student.StudentId }) |
+                 @Html.ActionLink("Details", "Details", new { id = item._Student.StudentId }) |
+                 @Html.ActionLink("Delete", "Delete", new { id = item._Student.StudentId })
+             </td>
+         </tr>
+     }
+}
+     
 
 </table>
 
@@ -81,8 +102,8 @@
     .panel-wrap {
         display: table;
         margin: 0 0 20px;
-        width: 968px;
-        background-color: #f5f5f5;
+        width: 300px;
+        background-color: #ff3333;
         border: 1px solid #e5e5e5;
     }
 

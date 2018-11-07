@@ -18,7 +18,7 @@ namespace MyMVCApplication.Controllers
 
         // HOW TO CREAT VIEW, So, open a StudentController class -> right click inside Index method -> click Add View..
         //GET: Student
-        public ActionResult Index(int id)
+        public ActionResult Index(int id=0)
         {
             //StudentsDb StDb = new StudentsDb();            
             //return View(StDb.GetStudents());
@@ -31,6 +31,8 @@ namespace MyMVCApplication.Controllers
             List<Student> stud = new List<Student>();
             List<StudentFullDetails> studFull = new List<StudentFullDetails>();
             studentFD = StDb.GetStudents().Where(s => s._Student.StudentId == id).FirstOrDefault();
+            if(studentFD==null)
+                return View();
             stud.Add(studentFD._Student);
             studFull.Add(studentFD);
             // return View(stud);
